@@ -1,11 +1,8 @@
 package com.hexad;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.TreeMap;
-import java.util.Collections;
-import java.util.Set;
+import java.text.DecimalFormat;
+import java.util.*;
+
 /**
  * @author Sivaji Ay
  * This clss is to generate invoice depends on the ipnut quantity & item.
@@ -71,11 +68,13 @@ public class BakeryPacks {
         String outputStr = null;
         Set<Integer> tempSet = packsMap.keySet();
         StringBuilder stringBuilder = new StringBuilder();
+        DecimalFormat priceFormat = new DecimalFormat("##.00");
+        Currency currency = Currency.getInstance("USD");
         for(Integer j: packsMap.keySet()){
             Boolean skipLoop = false;
             stringBuilder.delete(0, stringBuilder.length());
             Integer k = quantity%j;
-            String invoiceStr = quantity/j+" x "+j+" "+packsMap.get(j);
+            String invoiceStr = quantity/j+" x "+j+" "+currency.getSymbol()+""+packsMap.get(j);
             Double price = packsMap.get(j) * (quantity/j);
             if(k>0 && k!=j){
                 for(Integer l: tempSet){
@@ -83,8 +82,8 @@ public class BakeryPacks {
                         if(k%l !=0){
                             continue;
                         }else{
-                            String invoiceStrTemp = k/l+" x "+l+" "+packsMap.get(l);
-                            stringBuilder.append(input.toUpperCase()).append(" ").append(price+(packsMap.get(l)*(k/l))).
+                            String invoiceStrTemp = k/l+" x "+l+" "+currency.getSymbol()+""+ packsMap.get(l);
+                            stringBuilder.append(input.toUpperCase()).append(" ").append(currency.getSymbol()).append(priceFormat.format(price+(packsMap.get(l)*(k/l)))).
                                     append("\n\t").append(invoiceStr).append("\n\t").append(invoiceStrTemp);
                             skipLoop = true;
                             break;
@@ -92,7 +91,7 @@ public class BakeryPacks {
                     }
                 }
             }else if(k==0){
-                stringBuilder.append(input.toUpperCase()).append(" ").append(price).append("\n\t").append(invoiceStr);
+                stringBuilder.append(input.toUpperCase()).append(" ").append(currency.getSymbol()).append(priceFormat.format(price)).append("\n\t").append(invoiceStr);
                 break;
             }
             if(skipLoop)
