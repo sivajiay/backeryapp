@@ -10,8 +10,7 @@ import java.util.*;
  * Need to Pass 2 Command Line arguements as "Quantity <space> Valid Code"
  * More information in "doInvoice() method where whole calculations happen!"
  * */
-public class BakeryPacks {
-
+public class BakeryInvoice {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String output;
@@ -19,10 +18,10 @@ public class BakeryPacks {
         String[] inputArr = input.split(" ");
 
         if(inputArr.length == 2) {
-            Map<String, Map<Integer, Double>> bakeryMap = new HashMap<>();
-            Map<Integer, Double> vsItemMap = new TreeMap<>(Collections.reverseOrder());
-            Map<Integer, Double> mbItemMap = new TreeMap<>(Collections.reverseOrder());
-            Map<Integer, Double> cfItemMap = new TreeMap<>(Collections.reverseOrder());
+            Map<String, Map<Integer, Double>> bakeryMap = new HashMap<String, Map<Integer, Double>>();
+            Map<Integer, Double> vsItemMap = new TreeMap<Integer, Double>(Collections.reverseOrder());
+            Map<Integer, Double> mbItemMap = new TreeMap<Integer, Double>(Collections.reverseOrder());
+            Map<Integer, Double> cfItemMap = new TreeMap<Integer, Double>(Collections.reverseOrder());
 
             vsItemMap.put(3, 6.99);
             vsItemMap.put(5, 8.99);
@@ -53,17 +52,18 @@ public class BakeryPacks {
         }else{
             output = "Invalid Quantity/ Code!!";
         }
-        if(output.isEmpty()){
+        if(output.length() >0) {
             output = "No packs available!!";
         }
+
         System.out.println(output);
     }
     /*
-    * Calculate Bill -
-    * 1. Will check for (input%packs) to be ZERO.
-    * 2. If we get zero after doing all checks, we display expected output
-    * 3. If we get non-zero after doing all checks, we return "No Packs available!!" message
-    * */
+     * Calculate Bill -
+     * 1. Will check for (input%packs) to be ZERO.
+     * 2. If we get zero after doing all checks, we display expected output
+     * 3. If we get non-zero after doing all checks, we return "No Packs available!!" message
+     * */
     private static  String doInvoice(String input, Integer quantity, Map<Integer, Double> packsMap){
         String outputStr = null;
         Set<Integer> tempSet = packsMap.keySet();
@@ -95,7 +95,7 @@ public class BakeryPacks {
                 break;
             }
             if(skipLoop)
-              break;
+                break;
         }
         outputStr = stringBuilder.toString();
         return outputStr;
