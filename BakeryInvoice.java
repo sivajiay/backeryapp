@@ -52,7 +52,7 @@ public class BakeryInvoice {
         }else{
             output = "Invalid Quantity/ Code!!";
         }
-        if(output.length() >0) {
+        if(output.length() ==0) {
             output = "No packs available!!";
         }
 
