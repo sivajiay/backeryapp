@@ -1,7 +1,13 @@
 package com.hexad;
 
 import java.text.DecimalFormat;
-import java.util.*;
+import java.util.Scanner;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.HashMap;
+import java.util.Collections;
+import java.util.Set;
+import java.util.Currency;
 
 /**
  * @author Sivaji Ay
