@@ -1,7 +1,7 @@
 # backeryapp
 Backery App - Hexad Test
 
-Tech Stack used: Java, JUNIT 4.11, Apache Maven, Intellij IDE.
+Tech Stack used: Java, JUNIT 4.11, Apache Maven 3.3.9, Intellij IDE.
 
 1. Whole logic is in File- BakeryInvoice.java - Uploaded separately for quick reference
 
